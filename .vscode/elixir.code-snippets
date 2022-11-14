@@ -2,5 +2,9 @@
   "Advent Test": {
     "prefix": "atest",
     "body": ["advent_test ${1:$CURRENT_YEAR}, ${2:$CURRENT_DATE}"]
+  },
+  "Sample Function": {
+    "prefix": "sample",
+    "body": ["def sample do", "  \"\"\"", "  $1", "  \"\"\"", "end"]
   }
 }
