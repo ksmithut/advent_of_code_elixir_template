@@ -1,0 +1,6 @@
+{
+  "Advent Test": {
+    "prefix": "atest",
+    "body": ["advent_test ${1:$CURRENT_YEAR}, ${2:$CURRENT_DATE}"]
+  }
+}

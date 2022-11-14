@@ -1,0 +1,30 @@
+import AdventOfCode
+
+solution <%= year %>, <%= day %> do
+  @moduledoc """
+  https://adventofcode.com/<%= year %>/day/<%= day %>
+  https://adventofcode.com/<%= year %>/day/<%= day %>/input
+  """
+
+  @doc ~S"""
+      iex> "" |> part_1()
+      ""
+
+      iex> input() |> part_1()
+      input()
+  """
+  def part_1(input) do
+    input
+  end
+
+  @doc ~S"""
+      iex> "" |> part_2()
+      ""
+
+      iex> input() |> part_2()
+      input()
+  """
+  def part_2(input) do
+    input
+  end
+end
