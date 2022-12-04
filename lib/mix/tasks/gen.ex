@@ -20,6 +20,16 @@ defmodule Mix.Tasks.Gen do
 
   def run(args) do
     {year, day, _, _} = parse_args!(args)
-    AdventOfCode.generate(year, day)
+    AdventOfCode.generate(year, day) |> post_generate()
   end
+
+  defp post_generate({:ok, input_path, code_path} = result) do
+    if System.get_env("VSCODE_INJECTION") do
+      System.cmd("code", [code_path, input_path])
+    end
+
+    result
+  end
+
+  defp post_generate(result), do: result
 end

@@ -69,15 +69,18 @@ defmodule AdventOfCode do
   @template EEx.compile_file(Path.join(["lib", "template.eex"]))
   @session_env "ADVENT_OF_CODE_SESSION"
 
-  @spec generate(integer, integer) :: :ok
+  @spec generate(integer, integer) :: {:ok, binary(), binary()} | {:error, any()}
   def generate(year, day) do
     with session <- System.get_env(@session_env),
          {:ok, input} <- fetch_input(year, day, session),
          {code, _} = Code.eval_quoted(@template, year: year, day: day) do
-      input_path(year, day) |> create_file(input)
-      code_path(year, day) |> create_file(code)
+      input_filepath = input_path(year, day) |> create_file(input)
+      code_filepath = code_path(year, day) |> create_file(code)
+      {:ok, input_filepath, code_filepath}
     else
-      {:error, error} -> IO.warn(error, [])
+      {:error, error} ->
+        IO.warn(error, [])
+        {:error, error}
     end
   end
 
@@ -121,6 +124,7 @@ defmodule AdventOfCode do
       _ ->
         :ok = File.write!(path, contents)
         IO.puts("Generated #{path}")
+        path
     end
   end
 
